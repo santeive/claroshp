@@ -40,7 +40,7 @@ def parseItems(items):
             .filter_by(sku=my_json['data']['sku'])
             .first()
         )
-
+        #Check if the Product already exists
         if claro is None:
             claro = Claro(sku=my_json['data']['sku'])
         
