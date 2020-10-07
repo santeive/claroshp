@@ -1,0 +1,4 @@
+*_xml.py
+*.xml
+*.sqlite
+__pycache__/
