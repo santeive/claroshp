@@ -77,7 +77,7 @@ def parseItems(items):
 
 def saveCSV(newitems, filename):
 	#Cabeceras de los campos
-	fields = ['gitin','nombre', 'original', 'descuento', 'porcentaje', 'marca', 'categoría', 'stock', 'url']
+	fields = ['sku','name', 'price', 'discount', 'percentage', 'brand', 'seller', 'stock', 'url']
 
 	filterList = list(filter(None, newitems))
 
