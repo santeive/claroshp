@@ -6,7 +6,7 @@ from models import Base
 import math
 import csv
 import requests
-from extract_xml import getFecha, loadXML, extractSkus   
+from extract_xml import getFecha, loadXML, extractSkus, saveCSV  
 
 engine = create_engine("sqlite:///db.sqlite")
 Session = sessionmaker(bind=engine)
@@ -75,19 +75,6 @@ def parseItems(items):
         session.add(price_product)
         session.commit()
 
-def saveCSV(newitems, filename):
-	#Cabeceras de los campos
-	fields = ['sku','name', 'price', 'discount', 'percentage', 'brand', 'seller', 'stock', 'url']
-
-	filterList = list(filter(None, newitems))
-
-	with open(filename, 'w', newline='', encoding='UTF-8') as csvfile:
-		writer = csv.DictWriter(csvfile, fieldnames = fields)
-
-		#Escribimos las cabeceras
-		writer.writeheader()
-		writer.writerows(filterList)
-
 def main():
     #Load XML
     date = loadXML()
@@ -100,7 +87,7 @@ def main():
     parseItems(items)
 
     #Save CSV
-    saveCSV(items, 'claroshop-' + getFecha() + '.csv')
+    #saveCSV(items, 'claroshop-' + getFecha() + '.csv')
     
 if __name__ == "__main__":
     Base.metadata.create_all(engine)
